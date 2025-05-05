@@ -16,12 +16,12 @@ export interface Props {
   tags?: string[];
   description?: string;
   image?: string;
+  url?: string;
   readingMetadata: { time: number; wordCount: number };
 }
 
 const props = Astro.props;
 const entryID = IdToSlug(props.id);
-const contentUrl = `/posts/${entryID}`;
 const { time, wordCount } = props.readingMetadata;
 ---
 
@@ -29,8 +29,7 @@ const { time, wordCount } = props.readingMetadata;
   class="mx-3 flex flex-col rounded-3xl bg-[var(--card-color)] lg:mx-0 lg:h-[212px]"
 >
   <a
-    href={contentUrl}
-    class="relative h-[128px] transition-all hover:brightness-75 lg:hidden"
+    class="relative h-[128px] transition-all hover:brightness-75 lg:hidden" href={props.url} target="_blank"
   >
     <img
       class="lozad absolute left-0 top-0 h-full w-full rounded-t-3xl object-cover lg:hidden"
@@ -69,7 +68,7 @@ const { time, wordCount } = props.readingMetadata;
           class="mx-2 hidden h-6 w-1 translate-y-[1px] rounded-lg bg-[var(--primary-color)] lg:block"
         >
         </div>
-        <a href={contentUrl} class="title">
+        <a class="title" href={props.url} target="_blank">
           <p class="truncate">{props.title}</p>
           <Icon
             name="cuida:caret-right-outline"
@@ -91,7 +90,7 @@ const { time, wordCount } = props.readingMetadata;
                 <PostCardInfoIcon name="dashicons:category" />
                 <a
                   class="select-none rounded-md px-1.5 py-0.5 text-[var(--text-color-lighten)] transition-all hover:bg-[var(--primary-color-lighten)] hover:text-[var(--primary-color)]"
-                  href={`/categories/${IdToSlug(props.category)}`}
+                  href={props.url} target="_blank"
                 >
                   {props.category}
                 </a>
@@ -111,7 +110,6 @@ const { time, wordCount } = props.readingMetadata;
                         {index > 0 && <span class="pr-1">/</span>}
                         <a
                           class="rounded-md px-1.5 py-0.5 transition-all hover:bg-[var(--primary-color-lighten)] hover:text-[var(--primary-color)]"
-                          href={`/tags/${IdToSlug(tag)}`}
                         >
                           {tag}
                         </a>
@@ -144,7 +142,7 @@ const { time, wordCount } = props.readingMetadata;
       </div>
     </div>
     <div class="cover-container">
-      <a href={contentUrl} class="cover-wrapper">
+      <a class="cover-wrapper" href={props.url} target="_blank">
         <Icon class="right-icon" name="cuida:caret-right-outline" size={96} />
         <img
           class="lozad h-[212px] w-[404px] select-none rounded-r-3xl object-cover dark:brightness-90"
