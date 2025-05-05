@@ -1,0 +1,25 @@
+# Ignorar node_modules del host
+node_modules
+
+# Archivos de logs
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de entorno
+.env
+*.env
+
+# Cache
+.cache
+dist
+build
+
+# IDEs
+.vscode
+.idea
+*.swp
